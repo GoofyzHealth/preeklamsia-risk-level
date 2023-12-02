@@ -35,10 +35,11 @@ standarized_data = scaler.transform(x)
 X = standarized_data
 Y = df['level_risiko']
 
-# Buat model
+# Split data train 80% dan data testing 20%
 from sklearn.model_selection import train_test_split
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 0.2, stratify=Y, random_state=2)
 
+# Membuat model dari hasil percobaan terbaik
 tree = DecisionTreeClassifier(criterion='gini',random_state=42,max_depth=13)
 tree.fit(X_train, Y_train)
 
@@ -119,8 +120,6 @@ if (selected == 'Classification System'):
     
     with col2:
         riwayat_preeklamsia = st.text_input('Riwayat Preeklamsia')
-        
-    # Model ML
     
     # Kode untuk prediksi
     prediksi = ''
