@@ -18,7 +18,7 @@ warnings.filterwarnings('ignore')
 
 
 # Load save model yang telah dibuat sebelumnya
-df = pd.read_csv('https://github.com/GoofyzHealth/preeklamsia-risk-level/blob/83f09782442664562af9c33119ea07314e9c9041/dataset_ibu_hamil.csv')
+df = pd.read_csv('F:/Bismillah Skripsi/Dataset/dataset_ibu_hamil.csv', sep='delimiter')
 df['level_risiko'].replace({"Tinggi": "3", "Sedang": "2", "Rendah" : "1"}, inplace=True)
 df["level_risiko"] = df["level_risiko"].astype("int64")
 
