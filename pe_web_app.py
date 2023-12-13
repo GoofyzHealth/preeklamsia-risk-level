@@ -46,6 +46,14 @@ tree.fit(X_train, Y_train)
 
 # Membuat fungsi untuk melakukan klasifikasi level risiko
 
+def get_value(val,my_dict):
+
+          for key ,value in my_dict.items():
+
+            if val == key:
+
+              return value
+
 def preeklamsia_risk_level(input_data):  
     
     # Ubah data yang diinput menjadi array
@@ -116,10 +124,14 @@ if (selected == 'Classification System'):
         paritas = st.text_input('Jumlah Kelahiran')
     
     with col1:
-        riwayat_hipertensi = st.text_input('Riwayat Hipertensi')
+        hipertensi_options = {'Pernah': 1, 'Tidak Pernah': 0}
+        hipertensi = st.selectbox('Pernah mengalami tekanan darah tinggi ?', tuple(hipertensi_options.keys()))
+        riwayat_hipertensi = get_value(hipertensi,hipertensi_options)
     
     with col2:
-        riwayat_preeklamsia = st.text_input('Riwayat Preeklamsia')
+        preeklamsia_options = {'Pernah': 1, 'Tidak Pernah': 0}
+        preeklamsia = st.selectbox('Pernah mengalami preeklamsia ?', tuple(preeklamsia_options.keys()))
+        riwayat_preeklamsia = get_value(preeklamsia,preeklamsia_options)
     
     # Kode untuk prediksi
     prediksi = ''
