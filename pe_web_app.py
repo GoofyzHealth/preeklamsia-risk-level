@@ -68,7 +68,7 @@ def preeklamsia_risk_level(input_data):
     predicted_class = int(prediction[0])
 
     if predicted_class == 1:
-        return 'Anda *tidak birisiko* untuk terkena preeklamsia'
+        return 'Anda *tidak berisiko* untuk terkena preeklamsia'
     elif predicted_class == 2:
         return 'Anda memiliki *risiko sedang* untuk terkena preeklamsia'
     else:
