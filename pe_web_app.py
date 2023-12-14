@@ -106,22 +106,22 @@ if (selected == 'Classification System'):
     col1, col2 = st.columns(2)
     
     with col1:
-        tinggi_badan = st.text_input('Tinggi Badan')
+        tinggi_badan = st.text_input('Tinggi Badan (cm)')
     
     with col2:
-        berat_badan = st.text_input('Berat Badan')
+        berat_badan = st.text_input('Berat Badan (kg)')
     
     with col1:
-        tekanan_darah_sistolik = st.text_input('Tekanan Darah Sistolik')
+        tekanan_darah_sistolik = st.text_input('Tekanan Darah Sistolik (mmHg)')
     
     with col2:
-        tekanan_darah_diastolik = st.text_input('Tekanan Darah Diastolik')
+        tekanan_darah_diastolik = st.text_input('Tekanan Darah Diastolik (mmHg)')
     
     with col1:
-        usia = st.text_input('Usia')
+        usia = st.text_input('Usia (Tahun)')
     
     with col2:
-        paritas = st.text_input('Jumlah Kelahiran')
+        paritas = st.text_input('Jumlah Kelahiran Hidup')
     
     with col1:
         hipertensi_options = {'Pernah': 1, 'Tidak Pernah': 0}
