@@ -18,7 +18,7 @@ warnings.filterwarnings('ignore')
 
 
 # Load save model yang telah dibuat sebelumnya
-df = pd.read_csv('dataset_ibu_hamil.csv', error_bad_lines=False)
+df = pd.read_csv('F:/Bismillah Skripsi/Dataset/dataset_ibu_hamil.csv')
 df['level_risiko'].replace({"Tinggi": "3", "Sedang": "2", "Rendah" : "1"}, inplace=True)
 df["level_risiko"] = df["level_risiko"].astype("int64")
 
@@ -35,11 +35,10 @@ standarized_data = scaler.transform(x)
 X = standarized_data
 Y = df['level_risiko']
 
-# Split data train 80% dan data testing 20%
+# Buat model
 from sklearn.model_selection import train_test_split
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 0.2, stratify=Y, random_state=2)
 
-# Membuat model dari hasil percobaan terbaik
 tree = DecisionTreeClassifier(criterion='gini',random_state=42,max_depth=13)
 tree.fit(X_train, Y_train)
 
@@ -79,49 +78,49 @@ def preeklamsia_risk_level(input_data):
 # Navigasi sidebar
 with st.sidebar:
     
-    selected = option_menu('Sistem Klasifikasi Level Risiko Preeklamsia',
+    selected = option_menu('Deteksi Dini Preeklamsia',
                            
-                           ['How to Use',
-                            'Classification System',
-                            'About'],
+                           ['Cara Penggunaan',
+                            'Deteksi Dini',
+                            'Tentang Sistem'],
                            
                            icons = ['house-heart-fill', 'activity', 'person-fill'],
                            
                            default_index = 0)
     
 # Halaman tata cara penggunaan
-if (selected == 'How to Use'):
+if (selected == 'Cara Penggunaan'):
     
     # Judul Halaman
     st.title('Tata Cara Penggunaan Sistem Klasifikasi')
     
     
 # Halaman klasifikasi level risiko
-if (selected == 'Classification System'):
+if (selected == 'Deteksi Dini'):
     
     # Judul Halaman
-    st.title('Klasifikasi Level Risiko Preeklamsia')
+    st.title('Deteksi Dini Risiko Preeklamsia')
     
     # Membagi kolom
     col1, col2 = st.columns(2)
     
     with col1:
-        tinggi_badan = st.text_input('Tinggi Badan (cm)')
+        tinggi_badan = st.number_input('Tinggi Badan (cm)', min_value=100.0, max_value=240.0, value=None)
     
     with col2:
-        berat_badan = st.text_input('Berat Badan (kg)')
+        berat_badan = st.number_input('Berat Badan (kg)', min_value=30.0, max_value=200.0, value=None)
     
     with col1:
-        tekanan_darah_sistolik = st.text_input('Tekanan Darah Sistolik (mmHg)')
+        tekanan_darah_sistolik = st.number_input('Tekanan Darah Sistolik (mmHg)', min_value=50, max_value=240, value=None)
     
     with col2:
-        tekanan_darah_diastolik = st.text_input('Tekanan Darah Diastolik (mmHg)')
+        tekanan_darah_diastolik = st.number_input('Tekanan Darah Diastolik (mmHg)', min_value=30, max_value=240, value=None)
     
     with col1:
-        usia = st.text_input('Usia (Tahun)')
+        usia = st.number_input('Usia (tahun)', min_value=15, max_value=70, value=None)
     
     with col2:
-        paritas = st.text_input('Jumlah Kelahiran Hidup')
+        paritas = st.number_input('Jumlah Kelahiran Hidup', min_value=0, max_value=10, value=None)
     
     with col1:
         hipertensi_options = {'Pernah': 1, 'Tidak Pernah': 0}
@@ -132,6 +131,8 @@ if (selected == 'Classification System'):
         preeklamsia_options = {'Pernah': 1, 'Tidak Pernah': 0}
         preeklamsia = st.selectbox('Pernah mengalami preeklamsia ?', tuple(preeklamsia_options.keys()))
         riwayat_preeklamsia = get_value(preeklamsia,preeklamsia_options)
+        
+    # Model ML
     
     # Kode untuk prediksi
     prediksi = ''
@@ -144,10 +145,10 @@ if (selected == 'Classification System'):
     
 
 # Halaman tentang web app    
-if (selected == 'About'):
+if (selected == 'Tentang Sistem'):
     
     # Judul Halaman
-    st.title('Tentang Sistem Klasifikasi Level Risiko') 
+    st.title('Tentang Sistem Deteksi Dini Risiko Preeklamsia') 
 
     
     
