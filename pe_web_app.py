@@ -18,7 +18,7 @@ warnings.filterwarnings('ignore')
 
 
 # Load save model yang telah dibuat sebelumnya
-df = pd.read_csv('F:/Bismillah Skripsi/Dataset/dataset_ibu_hamil.csv')
+df = pd.read_csv('dataset_ibu_hamil.csv')
 df['level_risiko'].replace({"Tinggi": "3", "Sedang": "2", "Rendah" : "1"}, inplace=True)
 df["level_risiko"] = df["level_risiko"].astype("int64")
 
